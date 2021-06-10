@@ -1,0 +1,36 @@
+version: "3.8"
+services:
+    mongoservis:
+        image: mongo
+        container_name: mongo_parcial
+        environment:
+            - PUID=1000
+            - PGID=1000
+        volumes:
+            - ./mongo:/data/db
+        ports:
+            - 27017:27017
+        restart: unless-stopped
+    app:
+        build:
+            context: .
+            dockerfile: ./app/Dockerfile
+        image: parcialiii
+        container_name: app_parcial
+        ports: 
+            - 3000:3000
+        volumes: 
+            -   ./app:/app/
+        depends_on:
+            -   mongoservis
+        networks:
+            -   default
+    redis:
+        image: "redis:alpine"
+        container_name: redis_cache
+        depends_on:
+            -   mongoservis
+        networks:
+            -   default
+volumes:
+    persistent:

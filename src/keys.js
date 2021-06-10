@@ -1,5 +1,5 @@
 module.exports = {
     mongodb:{
-        URI:'mongodb://localhost:27017/parcialIII'
+        URI:'mongodb://mongo_parcial:27017/parcialIII'
     }
 };
