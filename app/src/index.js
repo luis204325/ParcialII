@@ -13,7 +13,7 @@ require ('./database');
 const app = express();
 require('./passport/local-auth');
 
-
+//index de nuestro proyecto
 
 //middlewares 
 app.use(morgan('dev'));
